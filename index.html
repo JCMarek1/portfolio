@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jacob Marek | Software Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Global Styles */
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #0f172a;
+      --accent: #06b6d4;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --light-gray: #e2e8f0;
+      --border-radius: 8px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--secondary);
+      background-color: var(--light);
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--secondary);
+      color: white;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0;
+    }
+
+    .logo p {
+      font-size: 0.9rem;
+      color: var(--light-gray);
+      margin-bottom: 0;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a:after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+
+    nav a:hover:after {
+      width: 100%;
+    }
+
+    /* Self-Assessment Section */
+    #self-assessment {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 180px 0 100px;
+    }
+
+    .assessment-content {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      padding: 40px;
+      backdrop-filter: blur(10px);
+    }
+
+    .assessment-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .assessment-header h1 {
+      font-size: 2.8rem;
+      color: white;
+    }
+
+    .assessment-header h2 {
+      font-size: 1.5rem;
+      color: var(--light-gray);
+      font-weight: 400;
+    }
+
+    .assessment-header h2:after {
+      display: none;
+    }
+
+    .assessment-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      margin-bottom: 25px;
+      transition: var(--transition);
+    }
+
+    .assessment-card:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .assessment-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .assessment-card h3 i {
+      font-size: 1.5rem;
+    }
+
+    .key-skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .skill-item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .skill-item i {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin-top: 5px;
+    }
+
+    .outcomes-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .outcome-item {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .outcome-item i {
+      color: var(--accent);
+    }
+
+    .closing-statement {
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 4px solid var(--accent);
+      padding: 20px;
+      margin: 40px 0;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+
+    /* Hero Section */
+    #hero {
+      background-color: white;
+      padding: 100px 0 60px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--secondary);
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: var(--gray);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover {
+      background-color: #0891b2;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      color: white;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* About Section */
+    #about {
+      background-color: #f1f5f9;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+    }
+
+    .about-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .code-icon {
+      font-size: 8rem;
+      color: var(--light-gray);
+    }
+
+    /* Skills Section */
+    #skills {
+      background-color: white;
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .skill-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 20px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-card h3 i {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    .skill-card ul li {
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--light-gray);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-card ul li:last-child {
+      border-bottom: none;
+    }
+
+    .skill-card ul li i {
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    /* Projects Section */
+    #projects {
+      background-color: #f1f5f9;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      margin-bottom: 40px;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-header {
+      background: var(--secondary);
+      color: white;
+      padding: 25px 30px;
+    }
+
+    .project-header h3 {
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .project-content {
+      padding: 30px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .feature {
+      display: flex;
+      gap: 15px;
+    }
+
+    .feature i {
+      color: var(--accent);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .tech-item {
+      background-color: var(--light-gray);
+      color: var(--secondary);
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: linear-gradient(135deg, var(--secondary) 0%, #1e293b 100%);
+      color: white;
+      text-align: center;
+    }
+
+    #contact h2:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-radius);
+      width: 220px;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .contact-item i {
+      font-size: 2.5rem;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--secondary);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-image {
+        order: -1;
+      }
+      
+      nav ul {
+        gap: 15px;
+      }
+
+      .key-skills {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .assessment-content {
+        padding: 20px;
+      }
+      
+      .contact-info {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <h1>Jacob Marek</h1>
+        <p>Software Engineering Portfolio</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#self-assessment">Self-Assessment</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Professional Self-Assessment Section -->
+  <section id="self-assessment">
+    <div class="container">
+      <div class="assessment-content">
+        <div class="assessment-header">
+          <h1>Professional Self-Assessment</h1>
+          <h2>Jacob Marek | Software Engineer</h2>
+        </div>
+        
+        <p>Welcome to my ePortfolio. My name is Jacob Marek, and I am a full-stack software developer with a focused background in building scalable, responsive, and data-driven applications. This portfolio showcases the culmination of my undergraduate studies in Computer Science, with a capstone artifact that demonstrates my mastery across software engineering, algorithms, and database systems.</p>
+        
+        <p>The featured project—a Reef Trip Booking Application—has undergone a full development lifecycle and multiple enhancement phases. Through this project, I have solidified my proficiency in Angular, Node.js, MongoDB, and RESTful API development, while also improving user interface design with Angular Material and responsive layout strategies.</p>
+        
+        <h3 style="color: var(--accent); margin: 30px 0 20px;">Key Skills and Accomplishments</h3>
+        
+        <div class="key-skills">
+          <div class="assessment-card">
+            <h3><i class="fas fa-laptop-code"></i> Software Design & Engineering</h3>
+            <ul>
+              <li>Re-architected UI using Angular Material for consistency and responsiveness</li>
+              <li>Implemented component-based architecture and modular routing</li>
+              <li>Integrated UI elements adhering to usability standards</li>
+            </ul>
+          </div>
+          
+          <div class="assessment-card">
+            <h3><i class="fas fa-sort-amount-down"></i> Algorithms & Data Structures</h3>
+            <ul>
+              <li>Developed composite sorting algorithms for dynamic trip organization</li>
+              <li>Created structured filter management system</li>
+              <li>Optimized trip filtering with arrays and conditional logic</li>
+            </ul>
+          </div>
+          
+          <div class="assessment-card">
+            <h3><i class="fas fa-database"></i> Databases & Backend Integration</h3>
+            <ul>
+              <li>Built REST API with Express connecting to MongoDB</li>
+              <li>Designed conflict prevention system for bookings</li>
+              <li>Implemented CRUD operations with real-time feedback</li>
+            </ul>
+          </div>
+        </div>
+        
+        <h3 style="color: var(--accent); margin: 30px 0 20px;">Professional Development Outcomes</h3>
+        
+        <p>Throughout this course, I've demonstrated growth not just in technical ability but also in problem-solving, iterative refinement, and attention to detail. Working through real-world development issues—such as adapting legacy UIs, managing version control with Git, and resolving deployment logic—has prepared me for the professional software development environment.</p>
+        
+        <div class="outcomes-list">
+          <div class="outcome-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Translate user needs into working solutions</span>
+          </div>
+          <div class="outcome-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Build full-stack applications with database integration</span>
+          </div>
+          <div class="outcome-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Work iteratively to improve performance</span>
+          </div>
+          <div class="outcome-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Implement modern development tools and methodologies</span>
+          </div>
+        </div>
+        
+        <div class="closing-statement">
+          <p>As I move forward in my software engineering career, I am equipped with a strong foundation in practical, modern development tools and a mindset oriented toward continuous learning and professional growth. I invite you to explore this portfolio to see not only the technical outcomes but also the thinking and planning behind each enhancement. Thank you for visiting.</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="#projects" class="btn">
+            <i class="fas fa-arrow-down"></i> View My Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hero">
+    <div class="container hero-content">
+      <h1>Full-Stack Software Developer</h1>
+      <p>Building scalable, data-driven applications with modern technologies</p>
+      <div style="display: flex; gap: 15px; justify-content: center;">
+        <a href="#projects" class="btn">View My Work</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I'm a full-stack software developer specializing in creating robust, scalable applications with modern web technologies. My expertise spans the entire development lifecycle, from UI/UX design to backend architecture and database implementation.</p>
+          <p>With a strong foundation in computer science principles and hands-on experience with industry-standard frameworks, I build solutions that are both technically sound and user-friendly.</p>
+          <p>My approach combines clean code architecture with thoughtful design to deliver applications that meet both business requirements and user needs.</p>
+          <div class="tech-stack">
+            <span class="tech-item">Angular</span>
+            <span class="tech-item">Node.js</span>
+            <span class="tech-item">MongoDB</span>
+            <span class="tech-item">Express</span>
+            <span class="tech-item">TypeScript</span>
+          </div>
+        </div>
+        <div class="about-image">
+          <i class="fas fa-laptop-code code-icon"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <h2>Technical Skills</h2>
+      <div class="skills-container">
+        <div class="skill-card">
+          <h3><i class="fas fa-code"></i> Languages</h3>
+          <ul>
+            <li><i class="fas fa-check"></i> JavaScript / TypeScript</li>
+            <li><i class="fas fa-check"></i> Java</li>
+            <li><i class="fas fa-check"></i> SQL</li>
+            <li><i class="fas fa-check"></i> HTML5 / CSS3</li>
+            <li><i class="fas fa-check"></i> Python</li>
+          </ul>
+        </div>
+        
+        <div class="skill-card">
+          <h3><i class="fas fa-layer-group"></i> Frameworks & Libraries</h3>
+          <ul>
+            <li><i class="fas fa-check"></i> Angular</li>
+            <li><i class="fas fa-check"></i> Node.js / Express</li>
+            <li><i class="fas fa-check"></i> React</li>
+            <li><i class="fas fa-check"></i> Spring Boot</li>
+            <li><i class="fas fa-check"></i> RxJS</li>
+          </ul>
+        </div>
+        
+        <div class="skill-card">
+          <h3><i class="fas fa-database"></i> Databases & Tools</h3>
+          <ul>
+            <li><i class="fas fa-check"></i> MongoDB</li>
+            <li><i class="fas fa-check"></i> MySQL</li>
+            <li><i class="fas fa-check"></i> Git / GitHub</li>
+            <li><i class="fas fa-check"></i> Docker</li>
+            <li><i class="fas fa-check"></i> AWS</li>
+          </ul>
+        </div>
+        
+        <div class="skill-card">
+          <h3><i class="fas fa-lightbulb"></i> Concepts & Methodologies</h3>
+          <ul>
+            <li><i class="fas fa-check"></i> RESTful API Design</li>
+            <li><i class="fas fa-check"></i> Responsive UI/UX</li>
+            <li><i class="fas fa-check"></i> Data Structures & Algorithms</li>
+            <li><i class="fas fa-check"></i> Agile Development</li>
+            <li><i class="fas fa-check"></i> Test-Driven Development</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2>Featured Projects</h2>
+      
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Reef Trip Booking Application</h3>
+          <p>Capstone Project | CS499: Computer Science Capstone</p>
+        </div>
+        <div class="project-content">
+          <p>A comprehensive reef trip booking system showcasing full-stack development skills, algorithm implementation, and backend integration.</p>
+          
+          <div class="features">
+            <div class="feature">
+              <i class="fas fa-desktop"></i>
+              <div>
+                <h4>UI/UX Design</h4>
+                <p>Redesigned with Angular Material for enhanced responsiveness and user experience</p>
+              </div>
+            </div>
+            
+            <div class="feature">
+              <i class="fas fa-expand-arrows-alt"></i>
+              <div>
+                <h4>Scalability</h4>
+                <p>Dynamic data rendering via Angular *ngFor for flexible content management</p>
+              </div>
+            </div>
+            
+            <div class="feature">
+              <i class="fas fa-sort-amount-down"></i>
+              <div>
+                <h4>Algorithm Implementation</h4>
+                <p>Composite trip sorting by price, duration, and user ratings</p>
+              </div>
+            </div>
+            
+            <div class="feature">
+              <i class="fas fa-project-diagram"></i>
+              <div>
+                <h4>Data Structures</h4>
+                <p>Implemented filter stack to manage user filter history efficiently</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="features">
+            <div class="feature">
+              <i class="fas fa-server"></i>
+              <div>
+                <h4>Backend Architecture</h4>
+                <p>RESTful API with Express & MongoDB for booking logic and data management</p>
+              </div>
+            </div>
+            
+            <div class="feature">
+              <i class="fas fa-check-circle"></i>
+              <div>
+                <h4>Validation System</h4>
+                <p>Real-time availability checks and date conflict prevention</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tech-stack">
+            <span class="tech-item">Angular</span>
+            <span class="tech-item">Node.js</span>
+            <span class="tech-item">Express</span>
+            <span class="tech-item">MongoDB</span>
+            <span class="tech-item">TypeScript</span>
+            <span class="tech-item">REST API</span>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/JCMarek1/reef-booking-app" class="btn" target="_blank">
+              <i class="fab fa-github"></i> View on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Software Engineering Portfolio</h3>
+          <p>Professional Portfolio | Responsive Design</p>
+        </div>
+        <div class="project-content">
+          <p>A responsive portfolio website showcasing my skills, projects, and professional background. <strong>You are currently viewing this project.</strong></p>
+          
+          <div class="features">
+            <div class="feature">
+              <i class="fas fa-mobile-alt"></i>
+              <div>
+                <h4>Responsive Design</h4>
+                <p>Fully responsive layout that works on all device sizes</p>
+              </div>
+            </div>
+            
+            <div class="feature">
+              <i class="fas fa-bolt"></i>
+              <div>
+                <h4>Performance Optimized</h4>
+                <p>Fast loading times and smooth animations</p>
+              </div>
+            </div>
+            
+            <div class="feature">
+              <i class="fas fa-code"></i>
+              <div>
+                <h4>Clean Code</h4>
+                <p>Well-structured HTML, CSS, and JavaScript</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tech-stack">
+            <span class="tech-item">HTML5</span>
+            <span class="tech-item">CSS3</span>
+            <span class="tech-item">JavaScript</span>
+            <span class="tech-item">Responsive Design</span>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/JCMarek1/portfolio" class="btn" target="_blank">
+              <i class="fab fa-github"></i> View Source Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <p>I'm currently open to new opportunities and collaborations</p>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <h4>Email</h4>
+          <p>jacob@example.com</p>
+          <a href="mailto:jacob@example.com">Send Message</a>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fab fa-github"></i>
+          <h4>GitHub</h4>
+          <p>@JCMarek1</p>
+          <a href="https://github.com/JCMarek1" target="_blank">View Profile</a>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fas fa-globe"></i>
+          <h4>Portfolio</h4>
+          <p>naturebyjake.com</p>
+          <a href="https://naturebyjake.com" target="_blank">Visit Site</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Jacob Marek. All rights reserved.</p>
+      <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">CS499: Computer Science Capstone Portfolio</p>
+    </div>
+  </footer>
+</body>
+</html>
